@@ -1,37 +1,51 @@
-<main>
-    <div class="container-fluid row">
-        <div class="col-12 p-4">
-            <h1>Proyectos</h1>
-            <p>Esta es la página de gestión de proyectos.</p>
-            <p>En esta sección podrás gestionar los proyectos.</p>
-        </div>
+<?php
+include_once "../app/controllers/LeerProyectosController.php";
+?>
 
-        <!-- Contenedor centrado para el botón y la tabla -->
-        <div class="col-8 mx-auto">
-            <!-- Botón con margen inferior -->
-            <div class="mb-3 text-end">
-                <a href="#" class="btn btn-success">Registrar proyecto</a>
-            </div>
-            
-            <!-- Tabla -->
-            <table class="table">
-                <thead class="table-primary">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
-                </tbody>
-            </table>
+<div class="container-fluid">
+    <div class="row p-4">
+        <h1>Proyectos</h1>
+        <p>Esta es la página de gestión de proyectos.</p>
+        <p>En esta sección podrás gestionar los proyectos.</p>
+    </div>
+
+    <div class="row">
+        <div class="col mb-3 text-end">
+            <a href="/public/?page=formulario_proyectos" class="btn btn-success">Registrar proyecto</a>
         </div>
     </div>
-</main>
+
+    <!-- Tabla -->
+    <div class="row px-4">
+        <table class="table table-bordered">
+            <caption>Listado de proyectos</caption>
+            <thead class="table-success">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fecha inicio</th>
+                    <th scope="col">Fecha fin</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($proyectos as $proyecto): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($proyecto['id']) ?></td>
+                        <td><?= htmlspecialchars($proyecto['nombre']) ?></td>
+                        <td><?= htmlspecialchars($proyecto['descripcion']) ?></td>
+                        <td><?= htmlspecialchars($proyecto['fecha_inicio']) ?></td>
+                        <td><?= htmlspecialchars($proyecto['fecha_fin']) ?></td>
+                        <td><?= htmlspecialchars($proyecto['estado']) ?></td>
+                        <td>
+                            <a href="/public/?page=formulario_actualizar_proyecto&id=<?= $proyecto['id'] ?>" class="btn btn-warning">Actualizar</a>
+                            <a href="../app/controllers/EliminarProyecto.php?id=<?= $proyecto['id'] ?>" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>

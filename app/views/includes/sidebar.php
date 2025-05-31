@@ -9,9 +9,9 @@
             <span class="icon"><i class="bi bi-box-seam"></i></span>
             <span class="description">Proyectos</span>
         </a>
-        <a href="/public/?page=tareas" class="nav-link">
-            <i class="bi bi-list-task"></i>
-            <span class="description">Tareas</span>
+        <a href="/public/?page=tickets" class="nav-link">
+            <i class="bi bi-ticket-perforated"></i>
+            <span class="description">Tickets</span>
         </a>
         <a href="/public/?page=reportes" class="nav-link">
             <i class="bi bi-reception-4"></i>
@@ -32,7 +32,7 @@
 
         .nav {
             height: 100%;
-            display: flex; 
+            display: flex;
 
             a {
                 font-size: 22px;
