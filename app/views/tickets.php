@@ -1,6 +1,7 @@
 <?php
-include_once "../app/controllers/LeerTicketController.php";
+include_once "../app/controllers/TicketController.php";
 include_once "../app/controllers/LeerEstadoTicketController.php";
+$ticketController = new TicketController();
 ?>
 
 <div class="container-fluid">
@@ -9,14 +10,7 @@ include_once "../app/controllers/LeerEstadoTicketController.php";
         <p>Esta es la página de gestión de tickets.</p>
         <p>En esta sección podrás gestionar los tickets.</p>
     </div>
-
-    <div class="row">
-        <div class="col mb-3 text-end">
-            <a href="/public/?page=formulario_ticket" class="btn btn-warning">Registrar ticket</a>
-        </div>
-    </div>
-
-    <div class="row px-4">
+    <div class="row px-4" style="margin-top: 55px;">
         <table class="table table-bordered">
             <caption>Listado de tickets</caption>
             <thead class="table-warning">
@@ -29,14 +23,22 @@ include_once "../app/controllers/LeerEstadoTicketController.php";
                     </th>
                     <th scope="col">Proyecto</th>
                     <th scope="col">Fecha creacion</th>
+                    <th scope="col">Empleado</th>
                     <th scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
+                <?php
+                if ($_SESSION['rol_id'] == 1) {
+                    $tickets = $ticketController->obtenerPorUsuario($_SESSION['id']);
+                } else {
+                    $tickets = $ticketController->obtenerTodos();
+                }
+                ?>
                 <?php foreach ($tickets as $ticket): ?>
                     <tr>
-                        <td><?= htmlspecialchars($ticket['id']) ?></td>
-                        <td><?= htmlspecialchars($ticket['nombre']) ?></td>
+                        <td><?= htmlspecialchars($ticket['ticket_id']) ?></td>
+                        <td><?= htmlspecialchars($ticket['ticket_nombre']) ?></td>
                         <td><?= htmlspecialchars($ticket['descripcion']) ?></td>
                         <td>
                             <select class="btn border-bottom">
@@ -45,16 +47,16 @@ include_once "../app/controllers/LeerEstadoTicketController.php";
                                 <?php endforeach; ?>
                             </select>
                         </td>
-                        <td><?= htmlspecialchars($ticket['proyecto']) ?></td>
+                        <td><?= htmlspecialchars($ticket['proyecto_nombre']) ?></td>
                         <td><?= htmlspecialchars($ticket['fecha_creacion']) ?></td>
+                        <td><?= htmlspecialchars($ticket['usuario_nombre']) ?></td>
                         <td>
                             <select onchange="if(this.value) window.location.href=this.value" class="btn border-bottom">
                                 <option selected disabled>Selecciona una acción</option>
-                                <option value="/public/?page=ver_detalles&id=<?= $ticket['id'] ?>">Ver detalles</option>
-                                <option value="/public/?page=formulario_actualizar_proyecto&id=<?= $ticket['id'] ?>">Actualizar</option>
-                                <option value="../app/controllers/EliminarProyecto.php?id=<?= $ticket['id'] ?>">Eliminar</option>
+                                <option value="/public/?page=ver_detalles&id=<?= $ticket['ticket_id'] ?>">Ver detalles</option>
+                                <option value="/public/?page=formulario_actualizar_proyecto&id=<?= $ticket['ticket_id'] ?>">Actualizar</option>
+                                <option value="../app/controllers/EliminarProyecto.php?id=<?= $ticket['ticket_id'] ?>">Eliminar</option>
                             </select>
-
                         </td>
                     </tr>
                 <?php endforeach; ?>

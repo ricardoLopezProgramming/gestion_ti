@@ -1,17 +1,20 @@
 <?php
-include_once __DIR__ . '/../services/DBConnection.php';
+include_once "ProyectoController.php";
 
-$connection = DBConnection::getConnection();
+$controller = new ProyectoController();
 
-$sql = "INSERT INTO proyectos(nombre, descripcion, fecha_inicio, fecha_fin) VALUES(?, ?, ?, ?)";
-$stmt = $connection->prepare($sql);
+$data = [
+    'nombre' => $_POST['nombre'],
+    'descripcion' => $_POST['descripcion'],
+    'fecha_inicio' => $_POST['fecha_inicio'],
+    'fecha_fin' => $_POST['fecha_fin'],
+    'estado_id' => 1,
+    'usuarios' => $_POST['usuarios'] ?? [] // múltiple select
+];
 
-$stmt->execute([
-    $_POST['nombre'],
-    $_POST['descripcion'],
-    $_POST['fecha_inicio'],
-    $_POST['fecha_fin']
-]);
-
-header('Location: ../../public/?page=proyectos');
-exit;
+if ($controller->crear($data)) {
+    header("Location: /public/?page=proyectos");
+    exit;
+} else {
+    echo "Error al crear el proyecto.";
+}

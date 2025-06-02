@@ -22,6 +22,20 @@
                 <input type="date" name="fecha_fin" id="fecha_fin" class="form-control" required>
             </div>
 
+            <div class="mb-3">
+                <label for="usuarios" class="form-label">Asignar empleados</label>
+                <select name="usuarios[]" id="usuarios" class="form-select" multiple required>
+                    <?php
+                    include_once "../app/controllers/UsuarioController.php";
+                    $usuarios = (new UsuarioController())->obtenerPorRolEmpleado(); // método que filtra solo empleados
+                    foreach ($usuarios as $usuario):
+                    ?>
+                        <option value="<?= $usuario['id'] ?>"><?= $usuario['nombre'] ?> (<?= $usuario['correo'] ?>)</option>
+                    <?php endforeach; ?>
+                </select>
+                <small class="text-muted">Mantén Ctrl o Cmd presionado para seleccionar varios</small>
+            </div>
+
             <button type="submit" class="btn btn-success">Registrar</button>
             <a href="/public/?page=proyectos" class="btn btn-danger ms-2">Cancelar</a>
         </form>

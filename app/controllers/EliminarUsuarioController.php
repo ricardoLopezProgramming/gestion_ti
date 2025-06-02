@@ -3,14 +3,9 @@ include_once "UsuarioController.php";
 
 $controller = new UsuarioController();
 
-$data = [
-    'nombre' => $_POST['nombre'],
-    'correo' => $_POST['correo'],
-    'contraseña' => $_POST['contraseña'],
-    'rol' => $_POST['rol']
-];
+$id = $_GET['id'];
 
-if ($controller->crear($data)) {
+if ($controller->eliminar($id)) {
     header("Location: /public/?page=usuarios");
     exit;
 } else {

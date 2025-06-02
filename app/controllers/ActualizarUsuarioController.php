@@ -1,7 +1,20 @@
 <?php
-include_once __DIR__ . '/../services/DBConnection.php';
-$connection = DBConnection::getConnection();
-$stmt = $connection->prepare("UPDATE usuarios SET nombre = ?, correo = ?, contraseña = ?, rol_id = ? WHERE id = ?");
-$stmt->execute([$_POST['nombre'], $_POST['correo'], $_POST['contraseña'], $_POST['rol'], $_GET['id']]);
-header('Location: ../../public/?page=usuarios');
-exit;
+include_once 'UsuarioController.php';
+
+$controller = new UsuarioController();
+
+$id = $_GET['id'];
+
+$data = [
+    'nombre' => $_POST['nombre'],
+    'correo' => $_POST['correo'],
+    'contraseña' => $_POST['contraseña'],
+    'rol_id' => $_POST['rol']
+];
+
+if ($controller->actualizarUsuario($id, $data)) {
+    header("Location: /public/?page=usuarios");
+    exit;
+} else {
+    echo "Error al actualizar el usuario.";
+}

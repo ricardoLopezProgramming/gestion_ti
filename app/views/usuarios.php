@@ -1,4 +1,8 @@
-<?php include_once "../app/controllers/LeerUsuariosController.php"; ?>
+<?php 
+include_once "../app/controllers/UsuarioController.php";
+$controller = new UsuarioController();
+$usuarios = $controller->obtenerTodos(); 
+?>
 <div class="container-fluid">
     <div class="row p-4">
         <h1>Usuarios</h1>
@@ -38,8 +42,12 @@
                         <td><?= htmlspecialchars($usuario['contraseña']) ?></td>
                         <td><?= htmlspecialchars($usuario['rol']) ?></td>
                         <td>
-                            <a href="/public/?page=formulario_actualizar_usuario&id=<?= urlencode($usuario['id']) ?>" class="btn btn-warning">Actualizar</a>
-                            <a href="../app/controllers/EliminarUsuario.php?id=<?= urlencode($usuario['id']) ?>" class="btn btn-danger">Eliminar</a>
+                            <select onchange="if(this.value) window.location.href=this.value" class="btn border-bottom">
+                                <option selected disabled>Selecciona una acción</option>
+                                <option value="/public/?page=ver_detalles&id=<?= $ticket['ticket_id'] ?>">Ver detalles</option>
+                                <option value="/public/?page=formulario_actualizar_usuario&id=<?= urlencode($usuario['id']) ?>">Actualizar</option>
+                                <option value="../app/controllers/EliminarUsuarioController.php?id=<?= urlencode($usuario['id']) ?>">Eliminar</option>
+                            </select>
                         </td>
                     </tr>
                 <?php endforeach; ?>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../app/services/DBConnection.php';
+require_once '../app/core/DBConnection.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn = DBConnection::getConnection();

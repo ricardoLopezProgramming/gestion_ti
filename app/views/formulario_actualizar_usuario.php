@@ -1,9 +1,11 @@
 <?php
-include_once '../app/controllers/LeerRolesController.php';
-include_once '../app/services/DBConnection.php';
+include_once '../app/controllers/LeerRolController.php';
+include_once '../app/core/DBConnection.php';
 
-$connection = DBConnection::getConnection();
-$stmt = $connection->prepare("SELECT u.id, u.nombre, u.correo, u.contraseña, u.rol_id, r.nombre AS rol FROM usuarios u INNER JOIN roles r ON u.rol_id = r.id WHERE u.id = ?");
+$connection = DBConnection::getInstance()->getConnection();
+
+$stmt = $connection->prepare("SELECT u.id, u.nombre, u.correo, u.contraseña, u.rol_id, r.nombre AS rol FROM usuario u INNER JOIN rol r ON u.rol_id = r.id WHERE u.id = ?");
+
 $stmt->execute([$_GET['id']]);
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>

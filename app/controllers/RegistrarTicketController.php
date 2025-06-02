@@ -1,17 +1,17 @@
 <?php
-include_once __DIR__ . '/../services/DBConnection.php';
+include_once "TicketController.php";
 
-$connection = DBConnection::getConnection();
+$controller = new TicketController();
 
-$sql = "INSERT INTO ticket(titulo, descripcion, estado, proyecto_id) VALUES(?, ?, ?, ?)";
-$stmt = $connection->prepare($sql);
+$data = [
+    'nombre' => $_POST['nombre'],
+    'descripcion' => $_POST['descripcion'],
+    'proyecto_id' => $_POST['proyecto_id']
+];
 
-$stmt->execute([
-    $_POST['titulo'],
-    $_POST['descripcion'],
-    $_POST['estado'],
-    $_POST['proyecto']
-]);
-
-header('Location: ../../public/?page=tickets');
-exit;
+if ($controller->crear($data)) {
+    header("Location: /public/?page=tickets");
+    exit;
+} else {
+    echo "Error al crear el ticket.";
+}

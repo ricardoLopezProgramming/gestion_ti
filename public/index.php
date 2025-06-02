@@ -1,18 +1,19 @@
 <?php
 
-// session_start();
+session_start();
 
-// // Redirigir al login si no hay sesión activa
-// if (!isset($_SESSION['usuario_id'])) {
-//     header("Location: ../public/login.php");
-//     exit;
-// }
+// Redirigir al login si no hay sesión activa
+if (!isset($_SESSION['correo'])) {
+    header("Location: ../public/sign_in.php");
+    exit;
+}
 
-$page = isset($_GET['page']) && file_exists("../app/views/pages/{$_GET['page']}.php") ? $_GET['page'] : 'dashboard';
+$page = isset($_GET['page']) && file_exists("../app/views/{$_GET['page']}.php") ? $_GET['page'] : 'dashboard';
 $title = ucfirst($page);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,16 +27,52 @@ $title = ucfirst($page);
         <div class="row">
             <!-- Sidebar -->
             <div class="col-2 d-flex flex-column align-items-start p-0">
-                <?php include "../app/views/includes/sidebar.php"; ?>
+                <?php include "../app/views/sidebar.php"; ?>
             </div>
             <!-- Contenido -->
             <div class="col-10 mx-auto mt-5">
                 <?php
-                include_once "../app/views/pages/$page.php";
+                include_once "../app/views/$page.php";
                 ?>
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- <script src="../public/js/chart.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script>
+        const ctx = document.getElementById('graficoTickets').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: <?= json_encode($labels) ?>,
+                datasets: [{
+                    label: 'Cantidad de Tickets',
+                    data: <?= json_encode($valores) ?>,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(75, 192, 192, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        stepSize: 1
+                    }
+                }
+            }
+        });
+    </script>
 </body>
+
 </html>
