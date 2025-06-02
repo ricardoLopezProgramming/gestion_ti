@@ -14,7 +14,7 @@
             <span>Tickets</span>
         </a>
         <?php if ($_SESSION['rol_id'] == 2 or $_SESSION['rol_id'] == 3): ?>
-            <a href="/public/?page=reportes" class="nav-link d-flex align-items-center justify-content-center">
+            <a href="/public/?page=404" class="nav-link d-flex align-items-center justify-content-center">
                 <i class="bi bi-reception-4 me-2" style="width: 24px; text-align: center;"></i>
                 <span>Reporte</span>
             </a>

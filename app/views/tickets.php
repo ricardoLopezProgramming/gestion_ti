@@ -54,8 +54,8 @@ $ticketController = new TicketController();
                             <select onchange="if(this.value) window.location.href=this.value" class="btn border-bottom">
                                 <option selected disabled>Selecciona una acción</option>
                                 <option value="/public/?page=ver_detalles&id=<?= $ticket['ticket_id'] ?>">Ver detalles</option>
-                                <option value="/public/?page=formulario_actualizar_proyecto&id=<?= $ticket['ticket_id'] ?>">Actualizar</option>
-                                <option value="../app/controllers/EliminarProyecto.php?id=<?= $ticket['ticket_id'] ?>">Eliminar</option>
+                                <option <?= ($_SESSION['rol_id'] == 2 or $_SESSION['rol_id'] == 3) ? '' : 'disabled' ?> value="/public/?page=formulario_actualizar_proyecto&id=<?= $ticket['ticket_id'] ?>">Actualizar</option>
+                                <option <?= ($_SESSION['rol_id'] == 2 or $_SESSION['rol_id'] == 3) ? '' : 'disabled' ?> value="../app/controllers/EliminarProyecto.php?id=<?= $ticket['ticket_id'] ?>">Eliminar</option>
                             </select>
                         </td>
                     </tr>

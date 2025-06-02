@@ -1,4 +1,8 @@
-<?php include_once '../app/controllers/LeerProyectosController.php' ?>
+<?php
+include_once '../app/controllers/ProyectoController.php';
+$controller = new ProyectoController();
+$proyecto = $controller->obtenerPorId($_GET['proyecto_id']);
+?>
 <div class="col-4 mx-auto mt-5">
     <section class="container p-4">
         <h2 class="text-center mb-3"><?= strtoupper($title) ?></h2>
@@ -14,13 +18,11 @@
             <div class="mb-3">
                 <label for="proyecto" class="form-label">Proyecto</label>
                 <select name="proyecto_id" id="proyecto" class="form-select" required>
-                    <?php foreach ($proyectos as $proyecto): ?>
-                        <option value="<?= $proyecto['id'] ?>"><?= $proyecto['nombre'] ?></option>
-                    <?php endforeach; ?>
+                    <option value="<?= $proyecto['id'] ?>"><?= $proyecto['nombre'] ?></option>
                 </select>
             </div>
             <button type="submit" class="btn btn-warning">Registrar</button>
-            <a href="/public/?page=proyectos" class="btn btn-danger ms-2">Cancelar</a>
+            <a href="/public/?page=detalles_proyecto&id=<?= $_GET['proyecto_id'] ?>" class="btn btn-danger ms-2">Cancelar</a>
         </form>
     </section>
 </div>

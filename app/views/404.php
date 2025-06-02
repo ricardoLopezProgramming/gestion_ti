@@ -1,19 +1,6 @@
-<main>
-    <h1>Error 404, not found page! ❌</h1>
-</main>
-
-<style>
-    main {
-        min-height: 100dvh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        h1 {
-            font-size: 2rem;
-            color: #ff0000;
-            text-align: center;
-        }
-
-    }
-</style>
+<div class="d-flex justify-content-center align-items-center fs-1 text-secondary" style="height: 100%;">
+  <h1 class="d-flex align-items-center gap-3">
+    Error 404, página aún no disponible! 
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjgiIGhlaWdodD0iMTI4IiB2aWV3Qm94PSIwIDAgMjQgMjQiPjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0icm95YWxibHVlIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iMiI+PHBhdGggZD0iTTE0LjUzMSAxMi40NjlMNi42MTkgMjAuMzhhMSAxIDAgMSAxLTMtM2w3LjkxMi03LjkxMm00LjE1NS01LjE1NEExMi41IDEyLjUgMCAwIDAgNS40NjEgMi45NThBMSAxIDAgMCAwIDUuNTggNC43MWEyMiAyMiAwIDAgMSA2LjMxOCAzLjM5MyIvPjxwYXRoIGQ9Ik0xNy43IDMuN2ExIDEgMCAwIDAtMS40IDBsLTQuNiA0LjZhMSAxIDAgMCAwIDAgMS40bDIuNiAyLjZhMSAxIDAgMCAwIDEuNCAwbDQuNi00LjZhMSAxIDAgMCAwIDAtMS40eiIvPjxwYXRoIGQ9Ik0xOS42ODYgOC4zMTRhMTIuNSAxMi41IDAgMCAxIDEuMzU2IDEwLjIyNWExIDEgMCAwIDEtMS43NTEtLjExOWEyMiAyMiAwIDAgMC0zLjM5My02LjMxOSIvPjwvZz48L3N2Zz4=" alt="Icono error" width="40" height="40" />
+  </h1>
+</div>
