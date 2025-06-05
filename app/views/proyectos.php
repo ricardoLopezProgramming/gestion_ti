@@ -49,7 +49,7 @@ $proyectosController = new ProyectoController();
                             <select name="id_estado" class="btn border-bottom">
                                 <?php foreach ($estados as $estado): ?>
                                     <option <?= ($_SESSION['rol_id'] == 2 or $_SESSION['rol_id'] == 3) ? '' : 'disabled' ?> value="<?= $estado['id'] ?>" <?= $estado['nombre'] == $proyecto['estado'] ? 'selected' : "" ?>><?= $estado['nombre'] ?></option>
-                                <? endforeach; ?>
+                                <?php endforeach; ?>
                             </select>
                         </td>
                         <td>
