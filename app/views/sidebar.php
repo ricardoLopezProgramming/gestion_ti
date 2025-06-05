@@ -1,9 +1,14 @@
 <div class="sidebar w-100 vh-100 border-end border-secondary">
+    <!-- <img src="../public/assets/images/web/icon-192.png" class="img-fluid" alt="Logo" loading="lazy" decoding="async" style="max-width: 60px;"> -->
     <h1 class="text-center py-3">MyD Tareo App</h1>
     <nav class="nav flex-column fs-5">
         <a href="/public/?page=dashboard" class="nav-link d-flex align-items-center justify-content-center">
             <i class="bi bi-grid me-2" style="width: 24px; text-align: center;"></i>
             <span>Dashboard</span>
+        </a>
+        <a href="/public/?page=404" class="nav-link d-flex align-items-center justify-content-center">
+        <i class="bi bi-clock me-2"></i>
+            <span>Horas</span>
         </a>
         <a href="/public/?page=proyectos" class="nav-link d-flex align-items-center justify-content-center">
             <i class="bi bi-box-seam me-2" style="width: 24px; text-align: center;"></i>
