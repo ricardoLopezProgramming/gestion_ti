@@ -1,8 +1,5 @@
 //ignorar subida de carpeta .idx
 .idx
 .vscode
-file
-gestion_ti.sql
-README.md
 .dockerignore
 Dockerfile

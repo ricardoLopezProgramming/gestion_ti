@@ -5,7 +5,7 @@ class DBConnection
     private const DB_HOST = '127.0.0.1';
     private const DB_USER = 'root';
     private const DB_PASS = '';
-    private const DB_NAME = 'gestion_ti';
+    private const DB_NAME = 'gerencia_ti';
     private const DB_PORT = '3306';
 
     private static ?DBConnection $instance = null;
